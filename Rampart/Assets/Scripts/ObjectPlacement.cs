@@ -28,5 +28,6 @@ public class ObjectPlacement : MonoBehaviour
     {
         var finalPosition = grid.GetNearestPointOnGrid(nearPoint);
         //place Gameobject
+        // place predetermined pieces from wallrandomizer
     }
 }
