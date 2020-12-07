@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GamePhase { PickCastle, Buy, Battle, Rebuild, GameOver };
 
@@ -50,6 +51,11 @@ public class GameManagerScript : MonoBehaviour
                 }
                 
             }
+        if (phase == GamePhase.GameOver) {
+                if (Input.GetKeyDown(KeyCode.Escape)) {
+                    SceneManager.LoadScene("MainMenu");
+                }
+            }
         }
     }
 
@@ -57,8 +63,9 @@ public class GameManagerScript : MonoBehaviour
         var mpc = FindObjectOfType<MultiplePlayerController>();
         foreach (int i in mpc.playerIndex) {
             Instantiate(playerPrefab);
+            PlayerMain.FindObjectOfType( id).add(int i);
             players.Add(playerPrefab.GetComponent<PlayerMain>());
-            
+
         }
     }
 
