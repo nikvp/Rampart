@@ -23,16 +23,43 @@ public class GameManagerScript : MonoBehaviour
         foreach (var player in players) {
             player.StartPhase(p);
         }
+        print(phase);
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (phase == GamePhase.PickCastle) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Buy);
+        }
+        if (phase == GamePhase.Buy) {
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    StartPhase(GamePhase.Battle);
+                }
+            }
+        if (phase == GamePhase.Battle) {
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    StartPhase(GamePhase.Rebuild);
+                }
+            }
+        if (phase == GamePhase.Rebuild) {
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    StartPhase(GamePhase.Battle);
+                } else if (Input.GetKeyDown(KeyCode.R)) {
+                    StartPhase(GamePhase.GameOver);
+                }
+                
+            }
+        }
     }
 
     void CreatePlayers() {
         var mpc = FindObjectOfType<MultiplePlayerController>();
-
+        foreach (int i in mpc.playerIndex) {
+            Instantiate(playerPrefab);
+            players.Add(playerPrefab.GetComponent<PlayerMain>());
+            
+        }
     }
 
 }
