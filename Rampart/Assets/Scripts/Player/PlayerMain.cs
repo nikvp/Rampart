@@ -29,7 +29,7 @@ public class PlayerMain : MonoBehaviour
 
 
     public void Start() {
-        horizontalAxisName = "Horizontal" + id;
+        horizontalAxisName += id;
         verticalAxisName = "Vertical" + id;
         startButton = "Start" + id;
         rotateButton = "Rotate" + id;
@@ -38,40 +38,25 @@ public class PlayerMain : MonoBehaviour
     }
 
     public void FixedUpdate() {
-        Movement();
+        //Movement();
     }
 
-    public void Movement() {
-        if (Input.GetAxisRaw(horizontalAxisName) != 0) {
-            targetPosition = transform.position + new Vector3(transform.position.x, transform.position.y,
-                Input.GetAxisRaw(horizontalAxisName) * speed * Time.deltaTime);
-            GetNearestPointOnGrid(targetPosition);
-            transform.position += targetPosition;
-        }
-        else if (Input.GetAxisRaw(verticalAxisName) != 0) {
-            targetPosition = transform.position + new Vector3(Input.GetAxisRaw(horizontalAxisName) * speed * Time.deltaTime,
-                transform.position.y, transform.position.z);
-            GetNearestPointOnGrid(targetPosition);
-            transform.position += targetPosition;
+    //public void Movement() {
+    //    if (Input.GetAxisRaw(horizontalAxisName) != 0) {
+    //        targetPosition = transform.position + new Vector3(transform.position.x, transform.position.y,
+    //            Input.GetAxisRaw(horizontalAxisName) * speed * Time.deltaTime);
+    //        GetNearestPointOnGrid(targetPosition);
+    //        transform.position += targetPosition;
+    //    }
+    //    else if (Input.GetAxisRaw(verticalAxisName) != 0) {
+    //        targetPosition = transform.position + new Vector3(Input.GetAxisRaw(horizontalAxisName) * speed * Time.deltaTime,
+    //            transform.position.y, transform.position.z);
+    //        GetNearestPointOnGrid(targetPosition);
+    //        transform.position += targetPosition;
 
-        }
-    }
+    //    }
+    //}
 
-    public Vector3 GetNearestPointOnGrid(Vector3 position) {
-        position -= transform.position;
-
-        int xCount = Mathf.RoundToInt(position.x / size);
-        int yCount = Mathf.RoundToInt(position.y / size);
-        int zCount = Mathf.RoundToInt(position.z / size);
-
-        Vector3 result = new Vector3(
-            (float)xCount * size,
-            (float)yCount * size,
-            (float)zCount * size);
-        result += transform.position;
-
-        return result;
-
-    }
+ 
 
 }

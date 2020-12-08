@@ -7,7 +7,7 @@ public class MultiplePlayerController : MonoBehaviour {
     //scriptin tarkoitus on pelaajien ohjainten jakaminen ja käytettävien resurssien merkkaamimen
     public int maxPlayerCount = 3;
     public int currentPlayerCount = 0;
-    public int[] playerIndex = new int[3];
+    public List<int> playerIndex = new List<int>();
     public string[] controlButtons;
     public bool[] playerInputAlreadyInUse;
     //public int n;
@@ -56,7 +56,7 @@ public class MultiplePlayerController : MonoBehaviour {
         if (playerInputAlreadyInUse[inputIndex]) return; //player allready joined
         if (currentPlayerCount == maxPlayerCount) return; //max players
         playerInputAlreadyInUse[inputIndex] = true;
-        playerIndex[currentPlayerCount] = inputIndex;
+        playerIndex.Add(inputIndex); //[currentPlayerCount] = inputIndex;
         currentPlayerCount++;
         //playerNumber[n] = m;
         //n++;

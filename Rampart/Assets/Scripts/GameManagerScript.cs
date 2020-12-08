@@ -11,7 +11,6 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GamePhase phase = GamePhase.PickCastle;
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
-    public int[] joinedPlayers = new int[3];
     private void Awake()
     {
     }
@@ -25,47 +24,45 @@ public class GameManagerScript : MonoBehaviour
         foreach (var player in players) {
             player.StartPhase(p);
         }
+        phase = p;  
         print(phase);
     }
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (phase == GamePhase.PickCastle) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 StartPhase(GamePhase.Buy);
-        }
-        if (phase == GamePhase.Buy) {
-                if (Input.GetKeyDown(KeyCode.Space)) {
-                    StartPhase(GamePhase.Battle);
-                }
             }
-        if (phase == GamePhase.Battle) {
-                if (Input.GetKeyDown(KeyCode.Space)) {
-                    StartPhase(GamePhase.Rebuild);
-                }
+        } else if (phase == GamePhase.Buy) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Battle);
             }
-        if (phase == GamePhase.Rebuild) {
-                if (Input.GetKeyDown(KeyCode.Space)) {
-                    StartPhase(GamePhase.Battle);
-                } else if (Input.GetKeyDown(KeyCode.R)) {
-                    StartPhase(GamePhase.GameOver);
-                }
-                
+        } else if (phase == GamePhase.Battle) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Rebuild);
             }
-        if (phase == GamePhase.GameOver) {
-                if (Input.GetKeyDown(KeyCode.Escape)) {
-                    SceneManager.LoadScene("MainMenu");
-                }
+        } else if (phase == GamePhase.Rebuild) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Battle);
+            } else if (Input.GetKeyDown(KeyCode.R)) {
+                StartPhase(GamePhase.GameOver);
+            }
+
+        } else if (phase == GamePhase.GameOver) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                SceneManager.LoadScene("MainMenu");
             }
         }
     }
 
-    void CreatePlayers() {
-        var mpc = FindObjectOfType<MultiplePlayerController>();
-        foreach (int joinedPlayer in mpc.playerIndex) {
-            Instantiate(playerPrefab);
-            players.Add(playerPrefab.GetComponent<PlayerMain>());
 
+void CreatePlayers() {
+        var mpc = FindObjectOfType<MultiplePlayerController>();
+            foreach (int i in mpc.playerIndex) {
+            var p = Instantiate(playerPrefab);
+            var pm = p.GetComponent<PlayerMain>();
+            pm.id = i;
+            players.Add(pm);
         }
     }
 
