@@ -9,7 +9,7 @@ public class PlayerMain : MonoBehaviour
     Vector3 targetPosition;
     Vector3 startingPosition;
     public float speed = 1f;
-    private float size = 1f;
+    private float size = 2f;
 
     private string horizontalAxisName = "Horizontal";
     private string verticalAxisName = "Vertical";
@@ -48,7 +48,7 @@ public class PlayerMain : MonoBehaviour
             GetNearestPointOnGrid(targetPosition);
             transform.position += targetPosition;
         }
-        if (Input.GetAxisRaw(verticalAxisName) != 0) {
+        else if (Input.GetAxisRaw(verticalAxisName) != 0) {
             targetPosition = transform.position + new Vector3(Input.GetAxisRaw(horizontalAxisName) * speed * Time.deltaTime,
                 transform.position.y, transform.position.z);
             GetNearestPointOnGrid(targetPosition);
