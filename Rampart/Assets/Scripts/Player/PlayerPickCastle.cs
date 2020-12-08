@@ -19,7 +19,8 @@ public class PlayerPickCastle : MonoBehaviour
 
     void Start()
     {
-        startingPosition = GetComponent<Transform>().position;
+        startingPosition = GetComponent<Transform>().position; 
+        //transform should be picked from given positions
         id = GetComponent<PlayerMain>().id;
         sw = startingPosition + new Vector3(-7, 0, -7);
         se = startingPosition + new Vector3(7, 0, -7);

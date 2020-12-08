@@ -11,11 +11,11 @@ public class PlayerMain : MonoBehaviour
     public float speed = 1f;
     private float size = 2f;
 
-    private string horizontalAxisName = "Horizontal";
-    private string verticalAxisName = "Vertical";
-    private string startButton = "Start";
-    private string rotateButton = "Rotate";
-    private string actionButton = "Action";
+    public string horizontalAxisName = "Horizontal";
+    public string verticalAxisName = "Vertical";
+    public string startButton = "Start";
+    public string rotateButton = "Rotate";
+    public string actionButton = "Action";
 
 
 
