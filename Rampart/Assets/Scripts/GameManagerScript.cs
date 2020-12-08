@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GamePhase phase = GamePhase.PickCastle;
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
+    public int[] joinedPlayers = new int[3];
     private void Awake()
     {
     }
@@ -61,9 +62,8 @@ public class GameManagerScript : MonoBehaviour
 
     void CreatePlayers() {
         var mpc = FindObjectOfType<MultiplePlayerController>();
-        foreach (int i in mpc.playerIndex) {
+        foreach (int joinedPlayer in mpc.playerIndex) {
             Instantiate(playerPrefab);
-            PlayerMain.FindObjectOfType( id).add(int i);
             players.Add(playerPrefab.GetComponent<PlayerMain>());
 
         }

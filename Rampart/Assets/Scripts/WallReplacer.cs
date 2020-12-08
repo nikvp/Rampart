@@ -53,10 +53,4 @@ public class WallReplacer : MonoBehaviour
             }
         }
     }
-
-    public void Cleaner()
-    {
-        //chekkaa jokaisen objectin vierustat
-        //jos vain yksi muuripala vieressä niin poistaa muuripalan
-    }
 }
