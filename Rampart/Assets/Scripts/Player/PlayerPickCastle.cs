@@ -57,28 +57,28 @@ public class PlayerPickCastle : MonoBehaviour
     private void WestWall() {
         //locate all positions of the southwest wall
         for (int i = 0; i < 7; i++) {
-            Vector3 position = sw + new Vector3(0, 0, (i * 2));
+            Vector3 position = sw + new Vector3(0, 0, i);
             castleWallsPositions.Add(position);
         }
     }
     private void NorthWall() {
         //locate all positions of the southwest wall
         for (int i = 0; i < 7; i++) {
-            Vector3 position = nw + new Vector3((i*2),0,0);
+            Vector3 position = nw + new Vector3(i,0,0);
             castleWallsPositions.Add(position);
         }
     }
     private void EastWall() {
         //locate all positions of the southwest wall
         for (int i = 0; i < 7; i++) {
-            Vector3 position = ne + new Vector3(0, 0, -(i * 2));
+            Vector3 position = ne + new Vector3(0, 0, -i);
             castleWallsPositions.Add(position);
         }
     }
     private void SouthhWall() {
         //locate all positions of the southwest wall
         for (int i = 0; i < 7; i++) {
-            Vector3 position = se + new Vector3(-(i * 2), 0, 0);
+            Vector3 position = se + new Vector3(-i, 0, 0);
             castleWallsPositions.Add(position);
         }
     }
