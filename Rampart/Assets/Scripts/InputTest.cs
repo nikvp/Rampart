@@ -15,5 +15,6 @@ public class InputTest : MonoBehaviour
     {
         var horiz = Input.GetAxis("TestHorizontal");
         transform.position += horiz * Vector3.right * Time.deltaTime;
+        var vert = Input.GetAxis("TestVertical");
     }
 }
