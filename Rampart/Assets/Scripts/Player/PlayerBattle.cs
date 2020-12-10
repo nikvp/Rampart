@@ -29,10 +29,12 @@ public class PlayerBattle : MonoBehaviour
     void Update()
     {
         var horiz = Input.GetAxis(pm.horizontalAxisName);
+
         //if (Input.GetButton(pm.horizontalAxisName)) {
         //    horiz = 1;
         //}
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
+
         if (Input.GetButtonDown(pm.actionButton)) {
             var target = Utility.GetNearestPointOnGrid(cursor.position);
             var hits = Physics.OverlapSphere(new Vector3(target.x, 0, target.y), 0.2f);
