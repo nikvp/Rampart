@@ -106,17 +106,17 @@ GameObject:
   - component: {fileID: 5902187419712845961}
   - component: {fileID: 5544826190253986354}
   - component: {fileID: 5147218884406996561}
-  - component: {fileID: 3968814132931675455}
-  - component: {fileID: 3417697878450850246}
   - component: {fileID: 5571896780840056497}
-  - component: {fileID: 359277742419207444}
+  - component: {fileID: 7544787983754251817}
+  - component: {fileID: 729016169326569367}
+  - component: {fileID: 4252348896823987717}
   m_Layer: 0
   m_Name: PlayerControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5902187419712845961
 Transform:
   m_ObjectHideFlags: 0
@@ -148,10 +148,10 @@ MonoBehaviour:
   id: 0
   phaseControllers:
   - {fileID: 5571896780840056497}
-  - {fileID: 3968814132931675455}
+  - {fileID: 729016169326569367}
   - {fileID: 5147218884406996561}
-  - {fileID: 359277742419207444}
-  - {fileID: 3417697878450850246}
+  - {fileID: 7544787983754251817}
+  - {fileID: 4252348896823987717}
   speed: 1
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
@@ -172,34 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 7342760664546142251}
   cursorSpeed: 3
---- !u!114 &3968814132931675455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235357494157083905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec43cfc5c782df40a7a21b55bf53569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 0}
-  turret: {fileID: 0}
-  maxTurretCount: 0
-  currentAmountOfTurrets: 0
---- !u!114 &3417697878450850246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235357494157083905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de86563e987476b4197649f1be83a5f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  canonball: {fileID: 0}
 --- !u!114 &5571896780840056497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,11 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692b51ac0674bc34dbd4a8ebb12f1f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castle: {fileID: 0}
-  castleWalls: {fileID: 0}
-  indicator: {fileID: 0}
-  castleSpawned: 0
---- !u!114 &359277742419207444
+--- !u!114 &7544787983754251817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,7 +194,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1235357494157083905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68539c9601d11e64aa823b62868bb6e5, type: 3}
+  m_Script: {fileID: 11500000, guid: d512572b3a1649b42813e4e29d0dbed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &729016169326569367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235357494157083905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a182af3ac851a945895c2ebc4d7c8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4252348896823987717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235357494157083905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f49ed7ba2c0eb45ba9e73a982357d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4820136239800751554

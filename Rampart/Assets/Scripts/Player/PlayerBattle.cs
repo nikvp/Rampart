@@ -38,14 +38,19 @@ public class PlayerBattle : MonoBehaviour
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
 
         if (Input.GetButtonDown(pm.actionButton)) {
+            var Cannon = FindObjectOfType<Turret>();
             var target = Utility.GetNearestPointOnGrid(cursor.position);
-            var hits = Physics.OverlapSphere(new Vector3(target.x, 0, target.y), 0.2f);
-            foreach (var h in hits) {
-                var d = h.GetComponent<IDamageable>();
-                if (d != null) {
-                    d.TakeDamage();
-                }
+            if (Cannon.playerID == pm.id && Cannon.CanFire()) {
+                Cannon.Fire(target);
             }
+            
+            //var hits = Physics.OverlapSphere(new Vector3(target.x, 0, target.y), 0.2f);
+            //foreach (var h in hits) {
+            //    var d = h.GetComponent<IDamageable>();
+            //    if (d != null) {
+            //        d.TakeDamage();
+            //    }
+            //}
         }
     }
 }
