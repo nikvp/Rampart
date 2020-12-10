@@ -16,8 +16,6 @@ public class GameManagerScript : MonoBehaviour
     }
     void Start()
     {
-        var grid = FindObjectOfType<Grid>();
-        grid.enabled = true; 
         CreatePlayers();
         StartPhase(GamePhase.PickCastle);
     }
