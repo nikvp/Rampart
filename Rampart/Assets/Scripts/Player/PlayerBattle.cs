@@ -7,6 +7,8 @@ public class PlayerBattle : MonoBehaviour
     PlayerMain pm;
     [SerializeField] Transform cursor;
     public float cursorSpeed = 3f;
+    public GameObject canonball;
+
 
 
 
