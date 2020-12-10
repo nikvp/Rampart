@@ -26,7 +26,7 @@ public class ObjectPlacement : MonoBehaviour
     }
     private void PlaceObjectNear(Vector3 nearPoint)
     {
-        var finalPosition = grid.GetNearestPointOnGrid(nearPoint);
+        var finalPosition = Utility.GetNearestPointOnGrid(nearPoint);
         //place Gameobject
         // place predetermined pieces from wallrandomizer
     }

@@ -1,20 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum GamePhase { PickCastle, Buy, Battle, Rebuild, GameOver };
 
 public class GameManagerScript : MonoBehaviour
-{   
-    // pääscripti
-    //vaihtoja ja sääntöjä jne
-    // Start is called before the first frame update
+{
+
+    [SerializeField] GamePhase phase = GamePhase.PickCastle;
+    public GameObject playerPrefab;
+    List<PlayerMain> players = new List<PlayerMain>();
+    private void Awake()
+    {
+    }
     void Start()
     {
-        
+        var grid = FindObjectOfType<Grid>();
+        grid.enabled = true; 
+        CreatePlayers();
+        StartPhase(GamePhase.PickCastle);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void StartPhase(GamePhase p) {
+        foreach (var player in players) {
+            player.StartPhase(p);
+        }
+        phase = p;  
+        print(phase);
     }
+    // Update is called once per frame
+    void Update() {
+        if (phase == GamePhase.PickCastle) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Buy);
+            }
+        } else if (phase == GamePhase.Buy) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Battle);
+            }
+        } else if (phase == GamePhase.Battle) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Rebuild);
+            }
+        } else if (phase == GamePhase.Rebuild) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Battle);
+            } else if (Input.GetKeyDown(KeyCode.R)) {
+                StartPhase(GamePhase.GameOver);
+            }
+
+        } else if (phase == GamePhase.GameOver) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+    }
+
+
+void CreatePlayers() {
+        var mpc = FindObjectOfType<MultiplePlayerController>();
+            foreach (int i in mpc.playerIndex) {
+            var p = Instantiate(playerPrefab);
+            var pm = p.GetComponent<PlayerMain>();
+            pm.id = i;
+            players.Add(pm);
+        }
+    }
+
 }
