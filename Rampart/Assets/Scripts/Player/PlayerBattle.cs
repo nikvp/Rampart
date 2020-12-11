@@ -31,11 +31,14 @@ public class PlayerBattle : MonoBehaviour
     void Update()
     {
         var horiz = Input.GetAxis(pm.horizontalAxisName);
+        var vert = Input.GetAxis(pm.verticalAxisName);
 
         //if (Input.GetButton(pm.horizontalAxisName)) {
         //    horiz = 1;
         //}
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
+        cursor.position += vert * Vector3.up * cursorSpeed * Time.deltaTime;
+
 
         if (Input.GetButtonDown(pm.actionButton)) {
             var Cannon = FindObjectOfType<Turret>();
@@ -52,5 +55,6 @@ public class PlayerBattle : MonoBehaviour
             //    }
             //}
         }
+
     }
 }

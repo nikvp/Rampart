@@ -152,7 +152,8 @@ MonoBehaviour:
   - {fileID: 5147218884406996561}
   - {fileID: 7544787983754251817}
   - {fileID: 4252348896823987717}
-  speed: 1
+  startingPosition: {fileID: 0}
+  gm: {fileID: 9191438750061447076, guid: 99bb1290265684b43b820528ade9aa70, type: 3}
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
   startButton: Start

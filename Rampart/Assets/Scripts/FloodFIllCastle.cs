@@ -6,12 +6,13 @@ public class FloodFIllCastle : MonoBehaviour
 {
     // lets assume this goes from 0, 0 to size.x, size.y
     public Vector2Int size;
-    public Transform[] playerAreaCenters;
+    Transform[] playerAreaCenters;
     public LayerMask unusableTerrain;
     public GameObject indicator;
     public LayerMask wall;
     public LayerMask castle;
-
+    public GameObject gm;
+    public List<bool> holeInWall = new List<bool>();
 
     int[][] playerAreas;
 
@@ -52,13 +53,17 @@ public class FloodFIllCastle : MonoBehaviour
             // if this was already filled, move on to checking the next point
             if (filled.Contains(point)) continue;
             // if this is outside the grid or in unusable space, also disqualified
-            if (IsOutside(point) || playerAreas[point.x][point.y] == -1) continue;
-
+            if (IsOutside(point) || playerAreas[point.x][point.y] == -1) {
+                holeInWall[playerID] = true;
+                continue;
+            }
+                
             var w = Physics.OverlapSphere(new Vector3(point.x, 0, point.y), 0.5f, wall);
             if (w.Length > 0) {
                 var d = Instantiate(indicator, new Vector3(point.x, 0, point.y), Quaternion.identity);
                 var dScript = d.GetComponent<IndicatorScript>();
                 dScript.wall = true;
+                dScript.occupied = true;
                 continue;
             }
 
@@ -67,6 +72,7 @@ public class FloodFIllCastle : MonoBehaviour
                 var s = Instantiate(indicator, new Vector3(point.x, 0, point.y), Quaternion.identity);
                 var sScript = s.GetComponent<IndicatorScript>();
                 sScript.castle = true;
+                sScript.occupied = true;
                 for (int i = 0; i < 4; i++) {
                     var neighbor = point + dirOffsets[i];
                     fringe.Add(neighbor);
@@ -83,14 +89,22 @@ public class FloodFIllCastle : MonoBehaviour
         }
 
         // now we can do whatever with the points we found
-        foreach (var point in filled) {
-            playerAreas[point.x][point.y] = playerID;
-            Instantiate(indicator, new Vector3(point.x, 0, point.y), Quaternion.identity);
+        if (holeInWall[playerID] == true) {
+                print("There is a hole in your wall! Fix it " + playerID);
+        }
+        else {
+            foreach (var point in filled) {
 
+                playerAreas[point.x][point.y] = playerID;
+                Instantiate(indicator, new Vector3(point.x, 0, point.y), Quaternion.identity);
+            }
         }
     }
 
     void Awake() {
+        var gms = gm.GetComponent<GameManagerScript>();
+        playerAreaCenters = gms.playerposition;
+
         playerAreas = new int[size.x][];
         for (int i = 0; i < size.x; i++) {
             playerAreas[i] = new int[size.y];
