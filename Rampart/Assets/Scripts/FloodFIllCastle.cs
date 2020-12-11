@@ -96,7 +96,7 @@ public class FloodFIllCastle : MonoBehaviour
             playerAreas[i] = new int[size.y];
         }
         ScanForUnusable();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) { //change < x , x is amount of players
             FloodFillPlayerArea(
                 Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),
                 i);
