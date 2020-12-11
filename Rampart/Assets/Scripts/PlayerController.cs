@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         controlButtons = new string[maxInputCount];
         controlButtons[0] = "Start";
 
-        for (int i;i <=maxPlayerCount; i++)
+        for (int i = 0;i <=maxPlayerCount; i++)
         {
             controlButtons[i] = "button " + i;
         }
