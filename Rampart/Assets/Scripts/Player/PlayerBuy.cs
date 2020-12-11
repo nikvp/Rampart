@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerBuy : MonoBehaviour
 {
     PlayerMain pm;
-    
+
+    public Transform startingPosition;
+
 
 
 
