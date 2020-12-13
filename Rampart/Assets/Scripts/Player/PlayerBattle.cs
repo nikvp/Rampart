@@ -6,7 +6,7 @@ public class PlayerBattle : MonoBehaviour
 {
     PlayerMain pm;
     [SerializeField] Transform cursor;
-    public float cursorSpeed = 3f;
+    public float cursorSpeed = 10f;
     public GameObject canonball;
 
 
@@ -36,6 +36,8 @@ public class PlayerBattle : MonoBehaviour
         //    horiz = 1;
         //}
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
+
+        
 
         if (Input.GetButtonDown(pm.actionButton)) {
             var Cannon = FindObjectOfType<Turret>();
