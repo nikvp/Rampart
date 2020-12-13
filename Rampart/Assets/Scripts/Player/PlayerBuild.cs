@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerBuild : MonoBehaviour
 {
     PlayerMain pm;
-
+    [SerializeField] Transform cursor;
+    public float cursorSpeed = 3f;
 
     void Awake() {
         pm = GetComponent<PlayerMain>();
@@ -23,6 +24,12 @@ public class PlayerBuild : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+
+        //movement
+        var horiz = Input.GetAxis(pm.horizontalAxisName);
+        var vert = Input.GetAxis(pm.verticalAxisName);
+        cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
+        cursor.position += vert * Vector3.up * cursorSpeed * Time.deltaTime;
 
     }
 }
