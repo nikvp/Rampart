@@ -46,44 +46,45 @@ public class GameManagerScript : MonoBehaviour
                 StartPhase(GamePhase.GameOver);
             }
 
-            else if (Input.GetKeyDown(KeyCode.Space)) {
-                floodFiller.SetActive(false);                
-                StartPhase(GamePhase.Battle);
+        } else if (Input.GetKeyDown(KeyCode.Space)) {
+            floodFiller.SetActive(false);
+            StartPhase(GamePhase.Battle);
 
-            } else if (Input.GetKeyDown(KeyCode.R)) {
-                floodFiller.SetActive(false);   
-                StartPhase(GamePhase.GameOver);
-            }
+        } else if (Input.GetKeyDown(KeyCode.R)) {
+            floodFiller.SetActive(false);
+            StartPhase(GamePhase.GameOver);
 
         } else if (phase == GamePhase.Battle) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Rebuild);
+            }
+
+        } else if (phase == GamePhase.Rebuild) {
             var indicators = FindObjectsOfType<IndicatorScript>();
             foreach (var indicator in indicators) {
                 if (indicator.occupied == false) {
                     Destroy(indicator.gameObject);
                 }
+            }
 
-            }
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                StartPhase(GamePhase.Rebuild);
-            }
-        } else if (phase == GamePhase.Rebuild) {
             floodFiller.SetActive(true);
+
+
             if (Input.GetKeyDown(KeyCode.Space)) {
                 floodFiller.SetActive(false);
                 StartPhase(GamePhase.Buy);
 
-            } 
+            }
 
         } else if (phase == GamePhase.GameOver) {
-            foreach (var destroyed in destroyedCastle) {
-                if (destroyed == true) {
-                    print("Player" + (destroyedCastle.IndexOf(destroyed) +1) + " your castlewalls have been breached, you lose!");
-                }
-                else {
-                    print("Player" + (destroyedCastle.IndexOf(destroyed) + 1) + "your castle is still safe. Congratulations!" );
-                }
-            }
-            print("Press Escape on the keyboard to get to the MainMenu");
+            //foreach (var destroyed in destroyedCastle) {
+            //    if (destroyed == true) {
+            //        print("Player" + (destroyedCastle.IndexOf(destroyed) + 1) + " your castlewalls have been breached, you lose!");
+            //    } else {
+            //        print("Player" + (destroyedCastle.IndexOf(destroyed) + 1) + "your castle is still safe. Congratulations!");
+            //    }
+            //}
+            //print("Press Escape on the keyboard to get to the MainMenu");
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 SceneManager.LoadScene("MainMenu");
             }
@@ -91,14 +92,15 @@ public class GameManagerScript : MonoBehaviour
     }
 
 
-void CreatePlayers() {
-        var mpc = FindObjectOfType<MultiplePlayerController>();
+    void CreatePlayers() {
+            var mpc = FindObjectOfType<MultiplePlayerController>();
             foreach (int i in mpc.playerIndex) {
-            var p = Instantiate(playerPrefab);
-            var pm = p.GetComponent<PlayerMain>();
-            pm.id = i;
-            players.Add(pm);
+                var p = Instantiate(playerPrefab);
+                var pm = p.GetComponent<PlayerMain>();
+                pm.id = i;
+                pm.startingPosition = playerposition[i];
+                players.Add(pm);
+            }
         }
-    }
 
 }

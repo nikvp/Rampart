@@ -7,7 +7,6 @@ public class PlayerMain : MonoBehaviour
     public int id;
     [SerializeField] MonoBehaviour[] phaseControllers;
     public Transform startingPosition;
-    public GameObject gm;
 
 
     public string horizontalAxisName = "Horizontal";
@@ -26,8 +25,7 @@ public class PlayerMain : MonoBehaviour
 
     public void Start() {
 
-        var gms = gm.GetComponent<GameManagerScript>();
-        startingPosition = gms.playerposition[id];
+        gameObject.transform.position = startingPosition.position;
 
         horizontalAxisName += id;
         verticalAxisName += id;

@@ -8,7 +8,8 @@ public class PlayerBuy : MonoBehaviour
     [SerializeField] Transform cursor;
     public float cursorSpeed = 3f;
     public int maxTurretcount;
-    public int currentTurretcount = 0;
+    private int currentTurretcount = 0;
+    public GameObject Cannon;
 
 
 
@@ -36,7 +37,6 @@ public class PlayerBuy : MonoBehaviour
         cursor.position += vert * Vector3.up * cursorSpeed * Time.deltaTime;
 
         if (Input.GetButtonDown(pm.actionButton)) {
-            var Cannon = FindObjectOfType<Turret>();
             var target = Utility.GetNearestPointOnGrid(cursor.position);
             var boxsize = new Vector3(2, 2, 2);
             var placement = Physics.OverlapBox(new Vector3(target.x, 0, target.y), boxsize,

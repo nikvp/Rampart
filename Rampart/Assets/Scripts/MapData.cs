@@ -69,7 +69,7 @@ public class MapData : MonoBehaviour {
             playerAreas[i] = new int[size.y];
         }
         ScanForUnusable();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) { //number of players = 2
             FloodFillPlayerArea(
                 Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),
                 i);

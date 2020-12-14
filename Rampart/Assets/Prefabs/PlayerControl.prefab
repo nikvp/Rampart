@@ -153,7 +153,6 @@ MonoBehaviour:
   - {fileID: 7544787983754251817}
   - {fileID: 4252348896823987717}
   startingPosition: {fileID: 0}
-  gm: {fileID: 9191438750061447076, guid: 99bb1290265684b43b820528ade9aa70, type: 3}
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
   startButton: Start
@@ -173,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 7342760664546142251}
   cursorSpeed: 3
-  canonball: {fileID: 0}
+  canonball: {fileID: 9105713682961848719, guid: 751755829f9377c4f85f9d83df10e4c1, type: 3}
 --- !u!114 &5571896780840056497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692b51ac0674bc34dbd4a8ebb12f1f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castle: {fileID: 7388591124086742901, guid: 1612bc559e183694aaf0a947da67c0d8, type: 3}
+  startingposition: {x: 0, y: 0, z: 0}
+  castleAllreadySpawned: 0
 --- !u!114 &7544787983754251817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d512572b3a1649b42813e4e29d0dbed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 0}
+  cursorSpeed: 3
 --- !u!114 &729016169326569367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a182af3ac851a945895c2ebc4d7c8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 0}
+  cursorSpeed: 3
+  maxTurretcount: 3
+  Cannon: {fileID: 1917546409082096869, guid: 41c14135f643a914eaf0083f2abdb614, type: 3}
 --- !u!114 &4252348896823987717
 MonoBehaviour:
   m_ObjectHideFlags: 0
