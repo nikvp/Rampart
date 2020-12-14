@@ -11,6 +11,8 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GamePhase phase = GamePhase.PickCastle;
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
+    public List<Transform> playerPositions = new List<Transform>();
+
     private void Awake()
     {
     }
@@ -33,19 +35,22 @@ public class GameManagerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) {
                 StartPhase(GamePhase.Buy);
             }
+
         } else if (phase == GamePhase.Buy) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                StartPhase(GamePhase.Battle);
-            }
-        } else if (phase == GamePhase.Battle) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                StartPhase(GamePhase.Rebuild);
-            }
-        } else if (phase == GamePhase.Rebuild) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 StartPhase(GamePhase.Battle);
             } else if (Input.GetKeyDown(KeyCode.R)) {
                 StartPhase(GamePhase.GameOver);
+            }
+
+        } else if (phase == GamePhase.Battle) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Rebuild);
+            }
+
+        } else if (phase == GamePhase.Rebuild) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Buy);
             }
 
         } else if (phase == GamePhase.GameOver) {
@@ -62,6 +67,7 @@ void CreatePlayers() {
             var p = Instantiate(playerPrefab);
             var pm = p.GetComponent<PlayerMain>();
             pm.id = i;
+            pm.startingPosition = playerPositions[i];
             players.Add(pm);
         }
     }

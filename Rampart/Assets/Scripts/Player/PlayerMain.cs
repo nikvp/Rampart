@@ -6,8 +6,7 @@ public class PlayerMain : MonoBehaviour
 {
     public int id;
     [SerializeField] MonoBehaviour[] phaseControllers;
-    Vector3 targetPosition;
-    Vector3 startingPosition;
+    public Transform startingPosition;
     public float speed = 1f;
     private float size = 2f;
 
