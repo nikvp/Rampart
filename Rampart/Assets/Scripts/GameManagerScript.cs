@@ -39,20 +39,19 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Buy) {
-            floodFiller.SetActive(true);
-            var d = floodFiller.GetComponent<FloodFIllCastle>();
-            destroyedCastle = d.holeInWall;
-            if (destroyedCastle.Contains(true)) {
+            //var d = floodFiller.GetComponent<FloodFIllCastle>();
+            //destroyedCastle = d.holeInWall;
+            //if (destroyedCastle.Contains(true)) {
+            //    StartPhase(GamePhase.GameOver);
+            //}
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartPhase(GamePhase.Battle);
+
+            } else if (Input.GetKeyDown(KeyCode.R)) {
+
                 StartPhase(GamePhase.GameOver);
             }
-
-        } else if (Input.GetKeyDown(KeyCode.Space)) {
-            floodFiller.SetActive(false);
-            StartPhase(GamePhase.Battle);
-
-        } else if (Input.GetKeyDown(KeyCode.R)) {
-            floodFiller.SetActive(false);
-            StartPhase(GamePhase.GameOver);
 
         } else if (phase == GamePhase.Battle) {
             if (Input.GetKeyDown(KeyCode.Space)) {
@@ -67,11 +66,8 @@ public class GameManagerScript : MonoBehaviour
                 }
             }
 
-            floodFiller.SetActive(true);
-
-
             if (Input.GetKeyDown(KeyCode.Space)) {
-                floodFiller.SetActive(false);
+
                 StartPhase(GamePhase.Buy);
 
             }

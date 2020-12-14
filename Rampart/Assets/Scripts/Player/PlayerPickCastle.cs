@@ -13,7 +13,7 @@ public class PlayerPickCastle : MonoBehaviour
         pm = GetComponent<PlayerMain>();
     }
     private void Start() {
-        startingposition = gameObject.transform.position;
+        startingposition = pm.GetComponent<PlayerMain>().startingPosition.position;
     }
 
 
