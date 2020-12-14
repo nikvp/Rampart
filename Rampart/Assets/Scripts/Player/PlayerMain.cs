@@ -9,6 +9,7 @@ public class PlayerMain : MonoBehaviour
     public Transform startingPosition;
     public float speed = 1f;
     private float size = 2f;
+    public bool loosing = false;
 
     public string horizontalAxisName = "Horizontal";
     public string verticalAxisName = "Vertical";
