@@ -6,6 +6,9 @@ public class Grid : MonoBehaviour {
 
     [SerializeField]
     private float size = 1f;
+    public GameObject indicator;
+    List<Vector3> indicatorList = new List<Vector3>();
+    public bool indicatorActivity = false;
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.yellow;

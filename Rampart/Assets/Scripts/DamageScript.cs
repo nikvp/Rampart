@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class DamageScript : MonoBehaviour, IDamageable
 {
-    public int health { get; set; }
-
-    
-
     public void TakeDamage() {
         Destroy(gameObject);
     }
 
-    
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

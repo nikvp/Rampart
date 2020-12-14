@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour
 {
-
-   
-
-
      Vector3 target;
     public float threshold = 0.5f;
     public float speed = 10f;
@@ -24,11 +20,4 @@ public class CannonBall : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    private void OnTriggerEnter(Collider other) {
-        Destroy(gameObject);
-        turret.Reset();
-    }
-
 }
-
-
