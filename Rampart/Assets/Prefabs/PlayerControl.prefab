@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 7342760664546142251}
   cursorSpeed: 3
-  canonball: {fileID: 0}
+  canonball: {fileID: 9105713682961848719, guid: 751755829f9377c4f85f9d83df10e4c1, type: 3}
 --- !u!114 &5571896780840056497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castleBuilt: 0
-  castle: {fileID: 5043576945587077849, guid: f9a3db1e377cd92488e823c89a82cd38, type: 3}
+  castle: {fileID: 1074018152850142590, guid: 8faa14b9a124c5c40835ab6bc70dfe32, type: 3}
 --- !u!114 &7544787983754251817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,11 +131,9 @@ MonoBehaviour:
   turret:
     serializedVersion: 2
     m_Bits: 512
-  indicators:
-    serializedVersion: 2
-    m_Bits: 8192
   placingTime: 1
   timeBetweenBlocks: 0.2
+  actualWallPiece: {fileID: 6697198680972769323, guid: 9f33dd89a96df224783c0df44392c896, type: 3}
 --- !u!114 &729016169326569367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,9 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a182af3ac851a945895c2ebc4d7c8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTurretCount: 0
+  maxTurretCount: 3
   currentTurretCount: 0
-  cursor: {fileID: 0}
+  cursor: {fileID: 7342760664546142251}
   cursorSpeed: 3
 --- !u!114 &4252348896823987717
 MonoBehaviour:

@@ -76,7 +76,7 @@ public class BatllePhaseSpriteChanger : MonoBehaviour
         foreach (Transform castleT in castle) {
             var c = Physics.OverlapBox(castleT.position, (Vector3.one * 0.5f),
                                     Quaternion.identity, castleLayer);
-            var castlePiece = c[1].gameObject;
+            var castlePiece = c[0].gameObject;
             castlePieces.Add(castlePiece);
         }
     }

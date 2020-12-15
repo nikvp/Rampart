@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputTest : MonoBehaviour
 {
+    public float speed = 50f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class InputTest : MonoBehaviour
         var horiz = Input.GetAxis("TestHorizontal");
         var vert = Input.GetAxis("TestVertical");
 
-        transform.position += horiz * Vector3.right * Time.deltaTime;
-        transform.position += vert * Vector3.back * Time.deltaTime;
+        transform.position += horiz * speed * Vector3.right *Time.deltaTime;
+        transform.position += vert * speed * Vector3.back * Time.deltaTime;
     }
 }
