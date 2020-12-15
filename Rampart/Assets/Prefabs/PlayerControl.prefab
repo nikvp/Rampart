@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 4252348896823987717}
   startingPosition: {fileID: 0}
   speed: 1
+  loosing: 0
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
   startButton: Start
@@ -104,6 +105,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d512572b3a1649b42813e4e29d0dbed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 0}
+  cursorSpeed: 3
+  tetrisPieces:
+  - {fileID: 4861998377970465215, guid: 7e758009d96a93d4a9354d5b601f2d91, type: 3}
+  - {fileID: 5318574807829826582, guid: 2c04ed4007388134ea344d04de4274c6, type: 3}
+  - {fileID: 783224051922652471, guid: f3f9453c6eb8d9342ae6568638977a82, type: 3}
+  - {fileID: 7583845868662398766, guid: a90c084982e751844973fac5b1c52e00, type: 3}
+  - {fileID: 6697198680972769323, guid: 9f33dd89a96df224783c0df44392c896, type: 3}
+  - {fileID: 4544259498473716784, guid: 0406ddd86cbb15843819d3243b03fa54, type: 3}
+  - {fileID: 2338689832878123990, guid: cde389ace7a42f04691f0a4c6d7c9bbc, type: 3}
+  - {fileID: 2283778163863175414, guid: a8e901257caf6cb4faef05dd73eed33f, type: 3}
 --- !u!114 &729016169326569367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a182af3ac851a945895c2ebc4d7c8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTurretCount: 0
+  currentTurretCount: 0
+  cursor: {fileID: 0}
+  cursorSpeed: 3
 --- !u!114 &4252348896823987717
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
     public List<Transform> playerPositions = new List<Transform>();
+    public GameObject floodFill;
 
     private void Awake()
     {
@@ -37,6 +38,8 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Buy) {
+            var c = floodFill.GetComponent<FloodFillCastle>();
+            c.checkOnorOff = true;
             if (Input.GetKeyDown(KeyCode.Space)) {
                 StartPhase(GamePhase.Battle);
             } else if (Input.GetKeyDown(KeyCode.R)) {
@@ -49,7 +52,10 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Rebuild) {
+            var c = floodFill.GetComponent<FloodFillCastle>();
+            c.checkOnorOff = true;
             if (Input.GetKeyDown(KeyCode.Space)) {
+                c.checkOnorOff = true;
                 StartPhase(GamePhase.Buy);
             }
 
