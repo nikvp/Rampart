@@ -37,7 +37,7 @@ public class PlayerBattle : MonoBehaviour
         //    horiz = 1;
         //}
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
-        cursor.position += horiz * Vector3.back * cursorSpeed * Time.deltaTime;
+        cursor.position += vert * Vector3.back * cursorSpeed * Time.deltaTime;
 
         if (Input.GetButtonDown(pm.actionButton)) {
             var Cannon = FindObjectOfType<Turret>();
@@ -46,13 +46,13 @@ public class PlayerBattle : MonoBehaviour
                 Cannon.Fire(target);
             }
             
-            //var hits = Physics.OverlapSphere(new Vector3(target.x, 0, target.y), 0.2f);
-            //foreach (var h in hits) {
-            //    var d = h.GetComponent<IDamageable>();
-            //    if (d != null) {
-            //        d.TakeDamage();
-            //    }
-            //}
+            var hits = Physics.OverlapSphere(new Vector3(target.x, 0, target.y), 0.2f);
+            foreach (var h in hits) {
+                var d = h.GetComponent<IDamageable>();
+                if (d != null) {
+                    d.TakeDamage();
+                }
+            }
         }
     }
 }

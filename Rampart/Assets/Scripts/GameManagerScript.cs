@@ -13,6 +13,7 @@ public class GameManagerScript : MonoBehaviour
     List<PlayerMain> players = new List<PlayerMain>();
     public List<Transform> playerPositions = new List<Transform>();
     public GameObject floodFill;
+    public GameObject spriteChanger;
 
     private void Awake()
     {
@@ -47,7 +48,11 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Battle) {
+            //run battlephasespritechanger
+            spriteChanger.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space)) {
+                //run battlephasespritechanger
+                spriteChanger.SetActive(true);
                 StartPhase(GamePhase.Rebuild);
             }
 

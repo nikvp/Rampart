@@ -14,7 +14,6 @@ public class PlayerBuild : MonoBehaviour
     public LayerMask castle;
     public LayerMask inside;
     public LayerMask turret;
-    public LayerMask indicators;
     bool clear = false;
     public bool placingTime = true;
     public float timeBetweenBlocks = 0.2f;
@@ -22,7 +21,6 @@ public class PlayerBuild : MonoBehaviour
     GameObject currentObject;
     List<Vector3> checkSurroundingSpots = new List<Vector3>();
     public GameObject actualWallPiece;
-    public GameObject indicator;
 
 
     void Awake() {
@@ -108,13 +106,9 @@ public class PlayerBuild : MonoBehaviour
                     //spawn 1x1 walls on every gridpoint the tetrispiece occupies
                     //spawn an indicator aswell
                     Instantiate(actualWallPiece, targetPosition, Quaternion.identity);
-                    var indi =Instantiate(indicator, targetPosition, Quaternion.identity);
-                    var indiScript = indi.GetComponent<IndicatorScript>();
-                    indiScript.wall = true;
                     if (checkSurroundingSpots.Count > 0) {
                         foreach (Vector3 vector in checkSurroundingSpots) {
                             Instantiate(actualWallPiece, vector, Quaternion.identity);
-                            Instantiate(indicator, vector, Quaternion.identity);
                         }
                     }
                     // destroy tetrispiece and clear tetris vectorlist

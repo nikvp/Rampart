@@ -45,3 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phase: 0
   playerPrefab: {fileID: 1235357494157083905, guid: 3ee19dd0b3cfae24fa1bce6a05ab1742, type: 3}
+  playerPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  floodFill: {fileID: 0}
+  spriteChanger: {fileID: 0}
