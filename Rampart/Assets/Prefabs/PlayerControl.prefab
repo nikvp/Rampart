@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d512572b3a1649b42813e4e29d0dbed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 0}
+  cursor: {fileID: 7342760664546142251}
   cursorSpeed: 3
   tetrisPieces:
   - {fileID: 4861998377970465215, guid: 7e758009d96a93d4a9354d5b601f2d91, type: 3}
@@ -116,6 +116,26 @@ MonoBehaviour:
   - {fileID: 4544259498473716784, guid: 0406ddd86cbb15843819d3243b03fa54, type: 3}
   - {fileID: 2338689832878123990, guid: cde389ace7a42f04691f0a4c6d7c9bbc, type: 3}
   - {fileID: 2283778163863175414, guid: a8e901257caf6cb4faef05dd73eed33f, type: 3}
+  unusableTerrain:
+    serializedVersion: 2
+    m_Bits: 4096
+  walls:
+    serializedVersion: 2
+    m_Bits: 256
+  castle:
+    serializedVersion: 2
+    m_Bits: 1024
+  inside:
+    serializedVersion: 2
+    m_Bits: 2048
+  turret:
+    serializedVersion: 2
+    m_Bits: 512
+  indicators:
+    serializedVersion: 2
+    m_Bits: 8192
+  placingTime: 1
+  timeBetweenBlocks: 0.2
 --- !u!114 &729016169326569367
 MonoBehaviour:
   m_ObjectHideFlags: 0

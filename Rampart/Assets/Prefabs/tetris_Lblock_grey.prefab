@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5315153997724880338}
   - component: {fileID: 8687805727546519444}
   - component: {fileID: 3194081804162841919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tetris_Lblock_grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7583845868662398766}
   m_LocalRotation: {x: 0.000000030908623, y: 0.7071068, z: 0.7071068, w: -0.000000030908623}
-  m_LocalPosition: {x: -48.613777, y: 0, z: -21.427929}
-  m_LocalScale: {x: 0.82000035, y: 0.82000023, z: 0.82000023}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.41, y: 0.41, z: 0.41}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
