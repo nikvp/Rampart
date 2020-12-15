@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerBuy : MonoBehaviour
 {
     PlayerMain pm;
-    
+    public int maxTurretCount;
+    public int currentTurretCount;
+    [SerializeField] Transform cursor;
+    public float cursorSpeed = 3f;
 
 
 
