@@ -15,14 +15,12 @@ public class FloodFillCastle : MonoBehaviour
     public LayerMask indicators;
     public GameObject indicator;
     Vector3 boxsize = Vector3.one * 0.5f;
-
-    List<PlayerMain> pms = new List<PlayerMain>();
-    List<int> playerCount = new List<int>();
-
     public bool checkOnorOff = false;
 
     int[][] playerAreas;
+    List<PlayerMain> pms;
 
+ 
 
     /// Returns -1 for unusable area, 0..2 for different players.
     public int AreaOwnerAtPoint(Vector2Int point) {
@@ -128,17 +126,6 @@ public class FloodFillCastle : MonoBehaviour
         foreach (var script in playerScripts) {
             pms.Add(script);
         }
-        //for (int i = 0; i < 2; i++) {
-        //    FloodFillPlayerArea(
-        //        Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),
-        //        i);
-        //}
-    }
-    private void Start() {
-        foreach(var script in pms) {
-            var playerid = script.id;
-            playerCount.Add(playerid);
-        }
     }
 
     void ScanForUnusable() {
@@ -175,10 +162,10 @@ public class FloodFillCastle : MonoBehaviour
 
     private void Update() {
         if (checkOnorOff == true) {
-            foreach (int id in playerCount) {
+            for (int i = 0; i < 2; i++) {
                 FloodFillPlayerArea(
-                    Utility.GetNearestPointOnGrid(playerAreaCenters[id].position),
-                    id);
+                    Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),
+                    i);
             }
             checkOnorOff = false;
         }
