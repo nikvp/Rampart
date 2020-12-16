@@ -46,7 +46,12 @@ MonoBehaviour:
   phase: 0
   playerPrefab: {fileID: 1235357494157083905, guid: 3ee19dd0b3cfae24fa1bce6a05ab1742, type: 3}
   playerPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  floodFill: {fileID: 0}
-  spriteChanger: {fileID: 0}
+  - {fileID: 1876664418275518195, guid: 594effc342b5bd44e8c4641907b7ffad, type: 3}
+  - {fileID: 3306992079201972592, guid: 410ebbc773cbe6740a15bca9f3c410e4, type: 3}
+  floodFill: {fileID: 8807381448078903308, guid: 0480c3e1cf7f8914db4d3b94b776fe57, type: 3}
+  spriteChanger: {fileID: 5713095809667717987, guid: 7c6e9898e180806419b0414201b101fc, type: 3}
+  timerOne: 5
+  timerTwo: 10
+  timerThree: 15
+  timerFour: 20
+  timerPause: 3

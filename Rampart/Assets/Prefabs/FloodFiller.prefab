@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8807381448078903308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8807381448078903310}
+  - component: {fileID: 8807381448078903309}
+  m_Layer: 0
+  m_Name: FloodFiller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8807381448078903310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807381448078903308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.871529, y: 0, z: 14.070235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8807381448078903309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807381448078903308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efe063c818baec45b3a0f75e4d598fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 40, y: 25}
+  playerAreaCenters:
+  - {fileID: 0}
+  - {fileID: 0}
+  unusableTerrain:
+    serializedVersion: 2
+    m_Bits: 4096
+  walls:
+    serializedVersion: 2
+    m_Bits: 256
+  castle:
+    serializedVersion: 2
+    m_Bits: 1024
+  inside:
+    serializedVersion: 2
+    m_Bits: 2048
+  turret:
+    serializedVersion: 2
+    m_Bits: 512
+  indicators:
+    serializedVersion: 2
+    m_Bits: 0
+  indicator: {fileID: 6295733023495300260, guid: 840c60395597742459f2147901f42170, type: 3}
+  checkOnorOff: 0

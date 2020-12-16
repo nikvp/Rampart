@@ -76,10 +76,6 @@ public class FloodFillCastle : MonoBehaviour
             var checkForCastle = Physics.OverlapBox(new Vector3(point.x, 0, point.y),
                 boxsize, Quaternion.identity, castle);
             if (checkForCastle.Length > 0) {
-                var indi = Instantiate(indicator, new Vector3(point.x, 0, point.y),
-                    Quaternion.identity);
-                var indiScript = indi.GetComponent<IndicatorScript>();
-                indiScript.castle = true;
                 for (int i = 0; i < 4; i++) {
                     var neighbor = point + dirOffsets[i];
                     fringe.Add(neighbor);
@@ -90,10 +86,6 @@ public class FloodFillCastle : MonoBehaviour
             var checkForWalls = Physics.OverlapBox(new Vector3(point.x, 0, point.y), boxsize,
                                     Quaternion.identity, walls);
             if (checkForWalls.Length > 0) {
-                var indi = Instantiate(indicator, new Vector3(point.x, 0, point.y),
-                                        Quaternion.identity);
-                var indiScript = indi.GetComponent<IndicatorScript>();
-                indiScript.wall = true;
                 continue;
             }
 
@@ -118,12 +110,12 @@ public class FloodFillCastle : MonoBehaviour
             }
         }
 
-        foreach (var script in pms) {
-            var id = script.id;
-            if (id == playerID) {
-                script.loosing = false;
-            }continue;
-        }
+        //foreach (var script in pms) {
+        //    var id = script.id;
+        //    if (id == playerID) {
+        //        script.loosing = false;
+        //    }continue;
+        //}
     }
 
     void Awake() {

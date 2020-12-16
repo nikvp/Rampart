@@ -62,9 +62,9 @@ public class BatllePhaseSpriteChanger : MonoBehaviour
                 var w = Physics.OverlapBox(new Vector3(x, 0, y), (Vector3.one * 0.5f),
                                 Quaternion.identity, wallsLayer);
                 if (w.Length > 0) {
-                    var vector = w[1].gameObject.transform.position;
+                    var vector = w[0].gameObject.transform.position;
                     walls.Add(vector);
-                    var wallPiece = w[1].gameObject;
+                    var wallPiece = w[0].gameObject;
                     wallPieces.Add(wallPiece);
 
                 }

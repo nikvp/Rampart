@@ -147,9 +147,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTurretCount: 3
-  currentTurretCount: 0
   cursor: {fileID: 7342760664546142251}
   cursorSpeed: 3
+  turret: {fileID: 1917546409082096869, guid: 41c14135f643a914eaf0083f2abdb614, type: 3}
+  indicators:
+    serializedVersion: 2
+    m_Bits: 8192
+  maxTurretsSet: 0
 --- !u!114 &4252348896823987717
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class PlayerBuild : MonoBehaviour
         //enable cursor object
     }
     private void Start() {
-        transform.position += pm.startingPosition.position;
+        cursor.position += new Vector3(0, 0, 0);
         NewTetrisPiece();
 
     }
@@ -95,7 +95,7 @@ public class PlayerBuild : MonoBehaviour
         while (placingTime == true) {
             if (Input.GetButtonDown(pm.actionButton)) {
                 //check target location for clear space
-                var t = Utility.GetNearestPointOnGrid(transform.position);
+                var t = Utility.GetNearestPointOnGrid(cursor.position);
                 targetPosition = new Vector3(t.x, 0, t.y);
                 CheckGridPoint(targetPosition);
                 foreach(Vector3 nextV in checkSurroundingSpots) {
