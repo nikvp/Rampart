@@ -14,30 +14,18 @@ public class FloodFillCastle : MonoBehaviour
     public LayerMask turret;
     public LayerMask indicators;
     public GameObject indicator;
-    Vector3 boxsize = Vector3.one * 0.5f;
-
-
-    int[][] playerAreas;
-    List<PlayerMain> pms = new List<PlayerMain>();
-
- 
-
-    /// Returns -1 for unusable area, 0..2 for different players.
-    public int AreaOwnerAtPoint(Vector2Int point) {
-        if (IsOutside(point))
-            return -1; // off map, so unusable area
-        return playerAreas[point.x][point.y];
-    }
-
-    bool IsOutside(Vector2Int point) {
-        return point.x < 0 || point.x >= size.x || point.y < 0 || point.y >= size.y;
-    }
+    Vector3 boxsize = Vector3.one * 0.1f;
+    MapData map;
 
     Vector3 WorldPos(int x, int y) {
         return new Vector3(x, 0, y);
     }
 
-    void FloodFillPlayerArea(Vector2Int startingPoint, int playerID) {
+    private void Awake() {
+        map = FindObjectOfType<MapData>();
+    }
+
+    public bool FloodFillPlayerArea(Vector2Int startingPoint, int playerID) {
         // This is where we store the found points that we'll fill
         HashSet<Vector2Int> filled = new HashSet<Vector2Int>();
         // This is where we store the places that still need to be
@@ -60,33 +48,15 @@ public class FloodFillCastle : MonoBehaviour
             // if this was already filled, move on to checking the next point
             if (filled.Contains(point)) continue;
             // if this is outside the grid or in unusable space, also disqualified
-            if (IsOutside(point) || playerAreas[point.x][point.y] == -1) {
-                foreach(var script in pms) {
-                    var id = script.id;
-                    if (id == playerID) {
-                        script.loosing = true;
-                    } else continue;
-                }
-                print(playerID + " your walls have been breached! Fix them!");
-                break;
-            }
+            if (map.AreaOwnerAtPoint(point) == -1) {
+                return false;
 
-            var checkForCastle = Physics.OverlapBox(new Vector3(point.x, 0, point.y),
-                boxsize, Quaternion.identity, castle);
-            if (checkForCastle.Length > 0) {
-                for (int i = 0; i < 4; i++) {
-                    var neighbor = point + dirOffsets[i];
-                    fringe.Add(neighbor);
-                }
-                continue;
             }
-
             var checkForWalls = Physics.OverlapBox(new Vector3(point.x, 0, point.y), boxsize,
                                     Quaternion.identity, walls);
             if (checkForWalls.Length > 0) {
                 continue;
             }
-
             // add point to filled, then queue up the next points to try to expand
             filled.Add(point);
             for (int i = 0; i < 4; i++) {
@@ -112,57 +82,22 @@ public class FloodFillCastle : MonoBehaviour
         //        script.loosing = false;
         //    }continue;
         //}
+        return true;
     }
-
-    void OnEnable() {
-        playerAreas = new int[size.x][];
-        for (int i = 0; i < size.x; i++) {
-            playerAreas[i] = new int[size.y];
-        }
-        ScanForUnusable();
-        var playerScripts = FindObjectsOfType<PlayerMain>();
-        foreach (var script in playerScripts) {
-            pms.Add(script);
-        }
-        RunTheScript();
-        gameObject.SetActive(false);
-    }
-
-    void ScanForUnusable() {
-        var boxSize = Vector3.one * 0.5f;
-        for (int i = 0; i < size.x; i++) {
-            for (int j = 0; j < size.y; j++) {
-                var c = Physics.OverlapBox(new Vector3(i, 0, j),
-                                            boxSize,
-                                            Quaternion.identity,
-                                            unusableTerrain);
-                if (c.Length > 0)
-                    playerAreas[i][j] = -1;
-            }
-        }
-    }
-
-    void OnDrawGizmosSelected() {
-        // debugging visualization
-        if (playerAreas == null) return;
-        for (int i = 0; i < size.x; i++) {
-            for (int j = 0; j < size.y; j++) {
-                var value = playerAreas[i][j];
-                var color = Color.gray;
-                if (value == -1) color = Color.black;
-                if (value == 0) color = Color.red;
-                if (value == 1) color = Color.cyan;
-                //if (value == 2) color = Color.red;
-                Gizmos.color = color;
-                Gizmos.DrawWireCube(WorldPos(i, j), Vector3.one);
-            }
-        }
-    }
-
-
-    void RunTheScript() {
-       for (int i = 0; i < 2; i++) {
-           FloodFillPlayerArea(Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),i);
-       }
-    }
+    //void OnDrawGizmosSelected() {
+    //    // debugging visualization
+    //    if (playerAreas == null) return;
+    //    for (int i = 0; i < size.x; i++) {
+    //        for (int j = 0; j < size.y; j++) {
+    //            var value = playerAreas[i][j];
+    //            var color = Color.gray;
+    //            if (value == -1) color = Color.black;
+    //            if (value == 0) color = Color.red;
+    //            if (value == 1) color = Color.cyan;
+    //            //if (value == 2) color = Color.red;
+    //            Gizmos.color = color;
+    //            Gizmos.DrawWireCube(WorldPos(i, j), Vector3.one);
+    //        }
+    //    }
+    //}
 }

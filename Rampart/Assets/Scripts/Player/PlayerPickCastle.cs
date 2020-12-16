@@ -12,20 +12,24 @@ public class PlayerPickCastle : MonoBehaviour
     public GameObject indicator;
     Vector3 southwestCorner;
     public LayerMask castleLayer;
+    FloodFillCastle flood;
+    Vector2Int startpos2;
 
 
     private void Awake() {
 
         pm = GetComponent<PlayerMain>();
 
-
     }
-
+    private void OnEnable() {
+        flood = FindObjectOfType<FloodFillCastle>();
+    }
     private void Start() {
 
         startingposition = pm.GetComponent<PlayerMain>().startingPosition.position;
         transform.position = startingposition;
         southwestCorner = (startingposition + new Vector3(-2, 0, -3));
+        startpos2 = Utility.GetNearestPointOnGrid(startingposition);
     }
 
     private void Update() {
@@ -35,8 +39,9 @@ public class PlayerPickCastle : MonoBehaviour
             } else {
                 Instantiate(castle, startingposition, Quaternion.identity);
                 castleBuilt = true;
-                SpawnIndicators();
+                //SpawnIndicators();
 
+                flood.FloodFillPlayerArea(startpos2, pm.id);
             }
         }
     }

@@ -12,16 +12,16 @@ public class GameManagerScript : MonoBehaviour
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
     public List<Transform> playerPositions;
-    public GameObject floodFill;
     public GameObject spriteChanger;
     public float timerOne = 5f;
     public float timerTwo = 10f;
     public float timerThree = 15f;
     public float timerFour = 20f;
     public float timerPause = 1f;
-
+    FloodFillCastle filler;
     private void Awake()
     {
+        filler = FindObjectOfType<FloodFillCastle>();
     }
     void Start()
     {
@@ -53,10 +53,7 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Buy) {
-            timerTwo -= Time.deltaTime;
-            //var c = floodFill.GetComponent<FloodFillCastle>();
-            //c.checkOnorOff = true;
-            
+            timerTwo -= Time.deltaTime;    
             //check if someone has lost
             //foreach(PlayerMain pms in players) {
             //    var l = pms.loosing;
@@ -82,16 +79,8 @@ public class GameManagerScript : MonoBehaviour
 
         } else if (phase == GamePhase.Rebuild) {
             timerFour -= Time.deltaTime;
-            //var c = floodFill.GetComponent<FloodFillCastle>();
-            //c.checkOnorOff = true;
-            //if (timerFour > 0.5f) {
-            //    foreach (PlayerMain pms in players) {
-            //        var l = pms.GetComponent<PlayerBuild>().placingTime;
-            //        l = false;
-            //    }
-            //}
             if (Input.GetButtonDown("Space")) {
-                //c.checkOnorOff = true;
+
                 StartPhase(GamePhase.Buy);
             }
 

@@ -43,43 +43,43 @@ public class FirstDraftPlayerBuild : MonoBehaviour
     void NewTetrisPiece() {
         tetrisPiece = tetrisPieces[Random.Range(0, tetrisPieces.Count)];
         //put all the other tetris vectors in the vector list for checks
-        if (tetrisPiece = tetrisPieces[0]) {
+        if (tetrisPiece == tetrisPieces[0]) {
             checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
             eulerVector = new Vector3(-90, 0, 90);
 
-        } else if (tetrisPiece = tetrisPieces[1]) {
+        } else if (tetrisPiece == tetrisPieces[1]) {
             checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
             checkSurroundingSpots.Add(new Vector3(1, 0, 0));
             eulerVector = new Vector3(-90, 0, 90);
 
-        } else if (tetrisPiece = tetrisPieces[2]) {
+        } else if (tetrisPiece == tetrisPieces[2]) {
             checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
             checkSurroundingSpots.Add(new Vector3(0, 0, 1));
             eulerVector = new Vector3(-90, 0, 90);
 
-        } else if (tetrisPiece = tetrisPieces[3]) {
+        } else if (tetrisPiece == tetrisPieces[3]) {
             checkSurroundingSpots.Add(new Vector3(1, 0, 0));
             checkSurroundingSpots.Add(new Vector3(0, 1, 0));
             checkSurroundingSpots.Add(new Vector3(0, 2, 0));
             eulerVector = new Vector3(-90, 0, -180);
 
-        } else if (tetrisPiece = tetrisPieces[4]) {
+        } else if (tetrisPiece == tetrisPieces[4]) {
             //nr 4 has no neighbouring wallpieces
             eulerVector = new Vector3(-90, 0, 90);
 
-        } else if (tetrisPiece = tetrisPieces[5]) {
+        } else if (tetrisPiece == tetrisPieces[5]) {
             checkSurroundingSpots.Add(new Vector3(-1, 0, 1));
             checkSurroundingSpots.Add(new Vector3(0, 0, 1));
             checkSurroundingSpots.Add(new Vector3(1, 0, 0));
             eulerVector = new Vector3(-90, 0, -180);
 
-        } else if (tetrisPiece = tetrisPieces[6]) {
+        } else if (tetrisPiece == tetrisPieces[6]) {
             checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
             checkSurroundingSpots.Add(new Vector3(0, 0, 1));
             checkSurroundingSpots.Add(new Vector3(1, 0, 1));
             eulerVector = new Vector3(-90, 0, -180);
 
-        } else if (tetrisPiece = tetrisPieces[7]) {
+        } else if (tetrisPiece == tetrisPieces[7]) {
             checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
             checkSurroundingSpots.Add(new Vector3(1, 0, 0));
             checkSurroundingSpots.Add(new Vector3(0, 0, -1));
@@ -98,11 +98,11 @@ public class FirstDraftPlayerBuild : MonoBehaviour
         var vert = Input.GetAxis(pm.verticalAxisName);
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
         cursor.position += vert * Vector3.forward * cursorSpeed * Time.deltaTime;
-        //currentObject.transform.position += cursor.position;
 
-        while (placingTime == true) {
+        currentObject.transform.position += cursor.position;
+
+
             if (Input.GetButtonDown(pm.actionButton)) {
-                NewTetrisPiece();
                 //check target location for clear space
                 var t = Utility.GetNearestPointOnGrid(cursor.position);
                 targetPosition = new Vector3(t.x, 0, t.y);
@@ -116,11 +116,11 @@ public class FirstDraftPlayerBuild : MonoBehaviour
                     //spawn 1x1 walls on every gridpoint the tetrispiece occupies
                     //spawn an indicator aswell
                     Instantiate(actualWallPiece, targetPosition, Quaternion.Euler(-90, 0, 90));
-                    if (checkSurroundingSpots.Count > 0) {
-                        foreach (Vector3 vector in checkSurroundingSpots) {
-                            Instantiate(actualWallPiece, vector, Quaternion.Euler(-90, 0, 90));
-                        }
-                    }
+                    //if (checkSurroundingSpots.Count > 0) {
+                    //    foreach (Vector3 vector in checkSurroundingSpots) {
+                    //        Instantiate(actualWallPiece, vector, Quaternion.Euler(-90, 0, 90));
+                    //    }
+                    //}
                     // destroy tetrispiece and clear tetris vectorlist
                     Destroy(currentObject);
                     checkSurroundingSpots.Clear();
@@ -131,7 +131,7 @@ public class FirstDraftPlayerBuild : MonoBehaviour
                     print("Can't place wall here");
                 }
             }
-        }
+        
     }
 
     void CheckGridPoint(Vector3 target) {
