@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4254967800679383051}
   - component: {fileID: 5276181526433423935}
   - component: {fileID: 8302603542083738691}
+  - component: {fileID: -6137401660706145615}
   m_Layer: 9
   m_Name: Turret
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917546409082096869}
   m_LocalRotation: {x: -0.5963678, y: -0.43045935, z: 0.37992823, w: 0.5609855}
-  m_LocalPosition: {x: 25.5, y: 0, z: 8.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,3 +99,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBallPrefab: {fileID: 9105713682961848719, guid: 751755829f9377c4f85f9d83df10e4c1, type: 3}
   playerID: -1
+--- !u!114 &-6137401660706145615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917546409082096869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7df14819b1b11947930630f02bbaf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

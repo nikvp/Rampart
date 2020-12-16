@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8340917403220001692}
   - component: {fileID: 763821786334893047}
   - component: {fileID: 5506574367610093508}
+  - component: {fileID: 4395607373203038090}
   m_Layer: 8
   m_Name: tetris_single_grey
   m_TagString: Untagged
@@ -95,3 +96,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4407885, y: 2.4412608, z: 7.32244}
   m_Center: {x: 0, y: -0.00005888939, z: 3.66122}
+--- !u!114 &4395607373203038090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697198680972769323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7df14819b1b11947930630f02bbaf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

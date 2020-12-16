@@ -93,6 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castleBuilt: 0
   castle: {fileID: 1074018152850142590, guid: 8faa14b9a124c5c40835ab6bc70dfe32, type: 3}
+  indicator: {fileID: 6295733023495300260, guid: 840c60395597742459f2147901f42170, type: 3}
+  castleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &7544787983754251817
 MonoBehaviour:
   m_ObjectHideFlags: 0

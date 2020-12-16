@@ -47,8 +47,11 @@ public class PlayerBuy : MonoBehaviour {
             if (currentTurretCount <= maxTurretCount) {
                 CheckForClear(target);
                 if (clear == true) {
-                    Instantiate(turret, target, Quaternion.identity);
+                    var q = Instantiate(turret, target, Quaternion.Euler(-20,-95,90));
+                    var qScript = q.GetComponent<Turret>();
+                    qScript.playerID = pm.id;
                     currentTurretCount++;
+
                 } else {
                     print("Position not clear");
                 }

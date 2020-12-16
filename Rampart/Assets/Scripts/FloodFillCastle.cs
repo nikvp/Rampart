@@ -15,10 +15,10 @@ public class FloodFillCastle : MonoBehaviour
     public LayerMask indicators;
     public GameObject indicator;
     Vector3 boxsize = Vector3.one * 0.5f;
-    public bool checkOnorOff = false;
+
 
     int[][] playerAreas;
-    List<PlayerMain> pms;
+    List<PlayerMain> pms = new List<PlayerMain>();
 
  
 
@@ -103,8 +103,6 @@ public class FloodFillCastle : MonoBehaviour
                 continue;
             } else {
                 var indi = Instantiate(indicator, new Vector3(point.x, 0, point.y), Quaternion.identity);
-                var indiScript = indi.GetComponent<IndicatorScript>();
-                indiScript.inside = true;
             }
         }
 
@@ -116,7 +114,7 @@ public class FloodFillCastle : MonoBehaviour
         //}
     }
 
-    void Awake() {
+    void OnEnable() {
         playerAreas = new int[size.x][];
         for (int i = 0; i < size.x; i++) {
             playerAreas[i] = new int[size.y];
@@ -126,6 +124,8 @@ public class FloodFillCastle : MonoBehaviour
         foreach (var script in playerScripts) {
             pms.Add(script);
         }
+        RunTheScript();
+        gameObject.SetActive(false);
     }
 
     void ScanForUnusable() {
@@ -160,14 +160,9 @@ public class FloodFillCastle : MonoBehaviour
     }
 
 
-    private void Update() {
-        if (checkOnorOff == true) {
-            for (int i = 0; i < 2; i++) {
-                FloodFillPlayerArea(
-                    Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),
-                    i);
-            }
-            checkOnorOff = false;
-        }
+    void RunTheScript() {
+       for (int i = 0; i < 2; i++) {
+           FloodFillPlayerArea(Utility.GetNearestPointOnGrid(playerAreaCenters[i].position),i);
+       }
     }
 }

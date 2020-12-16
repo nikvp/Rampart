@@ -40,7 +40,7 @@ public class GameManagerScript : MonoBehaviour
     void Update() {
         if (phase == GamePhase.PickCastle) {
             timerOne -= Time.deltaTime;
-            
+
             if (Input.GetButtonDown("Space")) {
                 // check if everyone built their castle, otherwise gameover
                 //foreach (PlayerMain pms in players) {
@@ -50,8 +50,6 @@ public class GameManagerScript : MonoBehaviour
                 //    }
                 //}
                 StartPhase(GamePhase.Buy);
-            } else if (Input.GetButtonDown("R")) {
-                floodFill.GetComponent<FloodFillCastle>().checkOnorOff = true;
             }
 
         } else if (phase == GamePhase.Buy) {
