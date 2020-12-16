@@ -1277,15 +1277,15 @@ PrefabInstance:
       objectReference: {fileID: 586516594}
     - target: {fileID: 7723357677154774108, guid: 99bb1290265684b43b820528ade9aa70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.518017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7723357677154774108, guid: 99bb1290265684b43b820528ade9aa70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.662243
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7723357677154774108, guid: 99bb1290265684b43b820528ade9aa70, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.209118
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7723357677154774108, guid: 99bb1290265684b43b820528ade9aa70, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2195,15 +2195,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8807381448078903308, guid: 0480c3e1cf7f8914db4d3b94b776fe57, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8807381448078903309, guid: 0480c3e1cf7f8914db4d3b94b776fe57, type: 3}
       propertyPath: playerAreaCenters.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 418162992}
     - target: {fileID: 8807381448078903309, guid: 0480c3e1cf7f8914db4d3b94b776fe57, type: 3}
       propertyPath: playerAreaCenters.Array.data[1]
       value: 
+      objectReference: {fileID: 986790818}
+    - target: {fileID: 8807381448078903309, guid: 0480c3e1cf7f8914db4d3b94b776fe57, type: 3}
+      propertyPath: indicators.m_Bits
+      value: 8192
       objectReference: {fileID: 0}
     - target: {fileID: 8807381448078903310, guid: 0480c3e1cf7f8914db4d3b94b776fe57, type: 3}
       propertyPath: m_LocalPosition.x

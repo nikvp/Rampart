@@ -50,6 +50,8 @@ public class GameManagerScript : MonoBehaviour
                 //    }
                 //}
                 StartPhase(GamePhase.Buy);
+            } else if (Input.GetButtonDown("R")) {
+                floodFill.GetComponent<FloodFillCastle>().checkOnorOff = true;
             }
 
         } else if (phase == GamePhase.Buy) {
