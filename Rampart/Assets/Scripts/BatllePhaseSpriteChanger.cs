@@ -25,59 +25,73 @@ public class BatllePhaseSpriteChanger : MonoBehaviour
         Replace();
         gameObject.SetActive(false);
     }
-    private void OnDisable() {
+
+    void Replace() {
+        if (normal == true) {
+            //replace with slanted
+            foreach (GameObject castlePiece in castlePieces) {
+                Instantiate(castleSlanted, castlePiece.transform.position, Quaternion.Euler(-90,90,90));
+            }
+            foreach (GameObject wallPiece in wallPieces) {
+                Instantiate(wallSlanted, wallPiece.transform.position, Quaternion.Euler(-90,90,-180));
+            }
+            normal = false;
+        } else if (normal == false){
+            //replace with normal
+            foreach (GameObject castlePiece in castlePieces) {
+                Instantiate(castleNormal, castlePiece.transform.position, Quaternion.Euler(-90,180,0));
+            }
+            foreach (GameObject wallPiece in wallPieces) {
+                Instantiate(wallNormal, wallPiece.transform.position, Quaternion.Euler(-90,0,90));
+            }
+            normal = true;
+        }
+        foreach(var i in castlePieces) {
+            Destroy(i);
+        }
+        foreach(var i in wallPieces) {
+            Destroy(i);
+        }
         walls.Clear();
         castle.Clear();
         wallPieces.Clear();
         castlePieces.Clear();
     }
 
-    void Replace() {
-        if (normal == true) {
-            //replace with slanted
-            foreach (GameObject castlePiece in castlePieces) {
-                Instantiate(castleSlanted, castlePiece.transform.position, Quaternion.identity);
-                Destroy(castlePiece);
-            }
-            foreach (GameObject wallPiece in wallPieces) {
-                Instantiate(wallSlanted, wallPiece.transform.position, Quaternion.identity);
-                Destroy(wallPiece);
-            }
-        } else {
-            //replace with normal
-            foreach (GameObject castlePiece in castlePieces) {
-                Instantiate(castleNormal, castlePiece.transform.position, Quaternion.identity);
-                Destroy(castlePiece);
-            }
-            foreach (GameObject wallPiece in wallPieces) {
-                Instantiate(wallNormal, wallPiece.transform.position, Quaternion.identity);
-                Destroy(wallPiece);
-            }
-        }
-    }
-
     void CheckPlayingField() {
         for (int x = 0; x < 40; x++) {
             for (int y = 0; y < 25; y++) {
-                var w = Physics.OverlapBox(new Vector3(x, 0, y), (Vector3.one * 0.5f),
+                var w = Physics.OverlapBox(new Vector3(x, 0, y), new Vector3(1,1,1),
                                 Quaternion.identity, wallsLayer);
-                if (w.Length > 0) {
-                    var vector = w[0].gameObject.transform.position;
-                    walls.Add(vector);
-                    var wallPiece = w[0].gameObject;
-                    wallPieces.Add(wallPiece);
+
+                foreach(var i in w) {
+                    walls.Add(i.gameObject.transform.position);
+                    wallPieces.Add(i.gameObject);
 
                 }
+                //if (w.Length > 0) {
+                //    var vector = w[0].gameObject.transform.position;
+                //    walls.Add(vector);
+                //    var wallPiece = w[0].gameObject;
+                //    wallPieces.Add(wallPiece);
+                //    Destroy(w[0].gameObject);
+
+                //}
             }
         }
     }
     void GetTheCastles() {
         castle = gm.GetComponent<GameManagerScript>().playerPositions;
         foreach (Transform castleT in castle) {
-            var c = Physics.OverlapBox(castleT.position, (Vector3.one * 0.5f),
+            var c = Physics.OverlapBox(castleT.position, new Vector3(1,1,1),
                                     Quaternion.identity, castleLayer);
-            var castlePiece = c[0].gameObject;
-            castlePieces.Add(castlePiece);
+            foreach(var i in c) {
+                castlePieces.Add(i.gameObject);
+
+            }
+            //var castlePiece = c[0].gameObject;
+            //castlePieces.Add(castlePiece);
+            //Destroy(c[0].gameObject);
         }
     }
 }

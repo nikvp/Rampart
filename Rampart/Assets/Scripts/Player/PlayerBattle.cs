@@ -37,7 +37,7 @@ public class PlayerBattle : MonoBehaviour
         //    horiz = 1;
         //}
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
-        cursor.position += vert * Vector3.back * cursorSpeed * Time.deltaTime;
+        cursor.position += vert * Vector3.forward * cursorSpeed * Time.deltaTime;
 
         if (Input.GetButtonDown(pm.actionButton)) {
             var Cannon = FindObjectOfType<Turret>();

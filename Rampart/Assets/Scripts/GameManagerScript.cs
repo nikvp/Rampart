@@ -11,7 +11,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GamePhase phase = GamePhase.PickCastle;
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
-    public List<Transform> playerPositions = new List<Transform>();
+    public List<Transform> playerPositions;
     public GameObject floodFill;
     public GameObject spriteChanger;
     public float timerOne = 5f;
@@ -72,18 +72,12 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Battle) {
-            //run battlephasespritechanger
-            timerPause -= Time.deltaTime;
-            spriteChanger.SetActive(true);
-            if (Input.GetButtonDown("Space")) {
-                //start the battle
-                timerThree -= Time.deltaTime;
-            }
             if (Input.GetButtonDown("Space")) {
                 //run battlephasespritechanger
                 spriteChanger.SetActive(true);
+
+            } else if (Input.GetButtonDown("R")) {
                 StartPhase(GamePhase.Rebuild);
-                
             }
 
         } else if (phase == GamePhase.Rebuild) {
