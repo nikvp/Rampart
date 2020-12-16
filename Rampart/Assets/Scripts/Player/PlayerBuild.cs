@@ -16,12 +16,9 @@ public class PlayerBuild : MonoBehaviour
     public LayerMask turret;
     bool clear = false;
     public bool placingTime = true;
-    public float timeBetweenBlocks = 0.2f;
     GameObject tetrisPiece;
     GameObject currentObject;
-    List<Vector3> checkSurroundingSpots = new List<Vector3>();
-    public GameObject actualWallPiece;
-    Vector3 eulerVector;
+    Vector3 boxSize = new Vector3(3, 1, 3);
 
 
     void Awake() {
@@ -35,7 +32,6 @@ public class PlayerBuild : MonoBehaviour
     private void Start() {
         cursor.position += new Vector3(0, 0, 0);
         NewTetrisPiece();
-
     }
 
     void OnDisable() {
@@ -45,55 +41,10 @@ public class PlayerBuild : MonoBehaviour
 
     void NewTetrisPiece() {
         tetrisPiece = tetrisPieces[Random.Range(0, tetrisPieces.Count)];
-        //put all the other tetris vectors in the vector list for checks
-        if (tetrisPiece = tetrisPieces[0]) {
-            checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
-            eulerVector = new Vector3(-90, 0, 90);
-
-        } else if (tetrisPiece = tetrisPieces[1]) {
-            checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
-            checkSurroundingSpots.Add(new Vector3(1, 0, 0));
-            eulerVector = new Vector3(-90, 0, 90);
-
-        } else if (tetrisPiece = tetrisPieces[2]) {
-            checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
-            checkSurroundingSpots.Add(new Vector3(0, 0, 1));
-            eulerVector = new Vector3(-90, 0, 90);
-
-        } else if (tetrisPiece = tetrisPieces[3]) {
-            checkSurroundingSpots.Add(new Vector3(1, 0, 0));
-            checkSurroundingSpots.Add(new Vector3(0, 1, 0));
-            checkSurroundingSpots.Add(new Vector3(0, 2, 0));
-            eulerVector = new Vector3(-90, 0, -180);
-
-        } else if (tetrisPiece = tetrisPieces[4]) { 
-            //nr 4 has no neighbouring wallpieces
-            eulerVector = new Vector3(-90, 0, 90);
-
-        } else if (tetrisPiece = tetrisPieces[5]) {
-            checkSurroundingSpots.Add(new Vector3(-1, 0, 1));
-            checkSurroundingSpots.Add(new Vector3(0, 0, 1));
-            checkSurroundingSpots.Add(new Vector3(1, 0, 0));
-            eulerVector = new Vector3(-90, 0, -180);
-
-        } else if (tetrisPiece = tetrisPieces[6]) {
-            checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
-            checkSurroundingSpots.Add(new Vector3(0, 0, 1));
-            checkSurroundingSpots.Add(new Vector3(1, 0, 1));
-            eulerVector = new Vector3(-90, 0, -180);
-
-        } else if (tetrisPiece = tetrisPieces[7]) {
-            checkSurroundingSpots.Add(new Vector3(-1, 0, 0));
-            checkSurroundingSpots.Add(new Vector3(1, 0, 0));
-            checkSurroundingSpots.Add(new Vector3(0, 0, -1));
-            eulerVector = new Vector3(-90, 0, 90);
-        }
-
-        currentObject = Instantiate(tetrisPiece, cursor.position, Quaternion.Euler(eulerVector));
-
+        currentObject = Instantiate(tetrisPiece, cursor.position, Quaternion.Euler(tetrisPiece.transform.rotation.x, 
+                        tetrisPiece.transform.rotation.y, tetrisPiece.transform.rotation.z));
     }
     
-
     // Update is called once per frame
     void Update() {
         //movement
@@ -108,24 +59,12 @@ public class PlayerBuild : MonoBehaviour
                 //check target location for clear space
                 var t = Utility.GetNearestPointOnGrid(cursor.position);
                 targetPosition = new Vector3(t.x, 0, t.y);
-                CheckGridPoint(targetPosition);
-                foreach(Vector3 nextV in checkSurroundingSpots) {
-                   CheckGridPoint(targetPosition += nextV);
-                
-                }
+                CheckGridPoint(targetPosition);     
                 if (clear == true) {
-
-                    //spawn 1x1 walls on every gridpoint the tetrispiece occupies
-                    //spawn an indicator aswell
-                    Instantiate(actualWallPiece, targetPosition, Quaternion.Euler(-90,0,90));
-                    if (checkSurroundingSpots.Count > 0) {
-                        foreach (Vector3 vector in checkSurroundingSpots) {
-                            Instantiate(actualWallPiece, vector, Quaternion.Euler(-90,0,90));
-                        }
-                    }
+                    Instantiate(tetrisPiece, targetPosition, Quaternion.Euler(tetrisPiece.transform.rotation.x,
+                        tetrisPiece.transform.rotation.y, tetrisPiece.transform.rotation.z));
                     // destroy tetrispiece and clear tetris vectorlist
                     Destroy(currentObject);
-                    checkSurroundingSpots.Clear();
                     //get new tetris piece and  vectors
                     NewTetrisPiece();
                     clear = false;
