@@ -8,9 +8,7 @@ public class PlayerBattle : MonoBehaviour
     [SerializeField] Transform cursor;
     public float cursorSpeed = 3f;
     public GameObject canonball;
-
-
-
+    List<Turret> turrets = new List<Turret>();
 
     void Awake()
     {
@@ -20,11 +18,12 @@ public class PlayerBattle : MonoBehaviour
     void OnEnable() {
         print("Enabled" + pm.id);
         //enable cursor object
-    }
-
-    void OnDisable() {
-        print("Disabled" + pm.id);
-        //disable cursor
+        var t = FindObjectsOfType<Turret>();    
+        foreach(Turret ts in t) {
+            if (ts.playerID == pm.id) {
+                turrets.Add(ts);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -33,26 +32,30 @@ public class PlayerBattle : MonoBehaviour
         var horiz = Input.GetAxis(pm.horizontalAxisName);
         var vert = Input.GetAxis(pm.verticalAxisName);
 
-        //if (Input.GetButton(pm.horizontalAxisName)) {
-        //    horiz = 1;
-        //}
         cursor.position += horiz * Vector3.right * cursorSpeed * Time.deltaTime;
-        cursor.position += horiz * Vector3.back * cursorSpeed * Time.deltaTime;
+        cursor.position += vert * Vector3.forward * cursorSpeed * Time.deltaTime;
 
         if (Input.GetButtonDown(pm.actionButton)) {
-            var Cannon = FindObjectOfType<Turret>();
-            var target = Utility.GetNearestPointOnGrid(cursor.position);
-            if (Cannon.playerID == pm.id && Cannon.CanFire()) {
-                Cannon.Fire(target);
-            }
+            TryShoot();
             
-            //var hits = Physics.OverlapSphere(new Vector3(target.x, 0, target.y), 0.2f);
-            //foreach (var h in hits) {
-            //    var d = h.GetComponent<IDamageable>();
-            //    if (d != null) {
-            //        d.TakeDamage();
-            //    }
-            //}
+        }
+    }
+    void TryShoot() {
+        int i = 0;
+
+        foreach(Turret turret in turrets) {
+            if (turret.CanFire()) {
+                var target = Utility.GetNearestPointOnGrid(cursor.position);
+                turret.Fire(target);
+                
+                break;
+            }
+            i++;
+        }
+        if (i < turrets.Count) {
+            var tur = turrets[i];
+            turrets.RemoveAt(i);
+            turrets.Add(tur);
         }
     }
 }

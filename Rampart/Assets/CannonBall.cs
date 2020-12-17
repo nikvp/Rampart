@@ -16,6 +16,13 @@ public class CannonBall : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         if(Vector3.Distance(target, transform.position)< threshold) {
             //TODO: try to hit something
+            var hits = Physics.OverlapSphere(target, 0.2f);
+            foreach (var h in hits) {
+                var d = h.GetComponent<IDamageable>();
+                if (d != null) {
+                    d.TakeDamage();
+                }
+            }
             turret.Reset();
             gameObject.SetActive(false);
         }

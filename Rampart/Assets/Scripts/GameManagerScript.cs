@@ -11,11 +11,18 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GamePhase phase = GamePhase.PickCastle;
     public GameObject playerPrefab;
     List<PlayerMain> players = new List<PlayerMain>();
-    public List<Transform> playerPositions = new List<Transform>();
-    public GameObject floodFill;
-
+    public List<Transform> playerPositions;
+    public GameObject spriteChanger;
+    public float timerOne = 5f;
+    public float timerTwo = 10f;
+    public float timerThree = 15f;
+    public float timerFour = 20f;
+    public float timerPause = 1f;
+    FloodFillCastle filler;
+    List<bool> loosing = new List<bool>();
     private void Awake()
     {
+        filler = FindObjectOfType<FloodFillCastle>();
     }
     void Start()
     {
@@ -33,29 +40,58 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (phase == GamePhase.PickCastle) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            timerOne -= Time.deltaTime;
+
+            if (timerOne < 0) {
+                // check if everyone built their castle, otherwise gameover
+                //foreach (PlayerMain pms in players) {
+                //    var l = pms.GetComponent<PlayerPickCastle>().castleBuilt;
+                //    if (l == false) {
+                //        StartPhase(GamePhase.GameOver);
+                //    }
+                //}
                 StartPhase(GamePhase.Buy);
             }
 
         } else if (phase == GamePhase.Buy) {
-            var c = floodFill.GetComponent<FloodFillCastle>();
-            c.checkOnorOff = true;
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            timerTwo = 10f;
+            timerTwo -= Time.deltaTime;    
+            //check if someone has lost
+            //foreach(PlayerMain pms in players) {
+            //    var l = pms.loosing;
+            //    if (l == true) {
+            //        StartPhase(GamePhase.GameOver);
+            //    }
+            //}
+            foreach (PlayerMain pm in players) {
+                var l = pm.loosing;
+                if (l == true) {
+                    loosing.Add(l);
+                }
+            }
+            if (timerTwo < 0) {
                 StartPhase(GamePhase.Battle);
-            } else if (Input.GetKeyDown(KeyCode.R)) {
+            }
+            else if (loosing.Count > 0) {
                 StartPhase(GamePhase.GameOver);
             }
 
         } else if (phase == GamePhase.Battle) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            timerThree = 15f;
+            timerThree -= Time.deltaTime;
+            if (Input.GetButtonDown("Space")) {
+                //run battlephasespritechanger
+                spriteChanger.SetActive(true);
+
+            } else if (timerThree < 0) {
                 StartPhase(GamePhase.Rebuild);
             }
 
         } else if (phase == GamePhase.Rebuild) {
-            var c = floodFill.GetComponent<FloodFillCastle>();
-            c.checkOnorOff = true;
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                c.checkOnorOff = true;
+            timerFour = 20f;
+            timerFour -= Time.deltaTime;
+            if (timerFour < 0) {
+
                 StartPhase(GamePhase.Buy);
             }
 
@@ -67,7 +103,7 @@ public class GameManagerScript : MonoBehaviour
     }
 
 
-void CreatePlayers() {
+    void CreatePlayers() {
         var mpc = FindObjectOfType<MultiplePlayerController>();
             foreach (int i in mpc.playerIndex) {
             var p = Instantiate(playerPrefab);
