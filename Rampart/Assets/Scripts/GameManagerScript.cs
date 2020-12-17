@@ -19,6 +19,7 @@ public class GameManagerScript : MonoBehaviour
     public float timerFour = 20f;
     public float timerPause = 1f;
     FloodFillCastle filler;
+    List<bool> loosing = new List<bool>();
     private void Awake()
     {
         filler = FindObjectOfType<FloodFillCastle>();
@@ -41,7 +42,7 @@ public class GameManagerScript : MonoBehaviour
         if (phase == GamePhase.PickCastle) {
             timerOne -= Time.deltaTime;
 
-            if (Input.GetButtonDown("Space")) {
+            if (timerOne < 0) {
                 // check if everyone built their castle, otherwise gameover
                 //foreach (PlayerMain pms in players) {
                 //    var l = pms.GetComponent<PlayerPickCastle>().castleBuilt;
@@ -53,6 +54,7 @@ public class GameManagerScript : MonoBehaviour
             }
 
         } else if (phase == GamePhase.Buy) {
+            timerTwo = 10f;
             timerTwo -= Time.deltaTime;    
             //check if someone has lost
             //foreach(PlayerMain pms in players) {
@@ -61,25 +63,34 @@ public class GameManagerScript : MonoBehaviour
             //        StartPhase(GamePhase.GameOver);
             //    }
             //}
-            if (Input.GetButtonDown("Space")) {
+            foreach (PlayerMain pm in players) {
+                var l = pm.loosing;
+                if (l == true) {
+                    loosing.Add(l);
+                }
+            }
+            if (timerTwo < 0) {
                 StartPhase(GamePhase.Battle);
             }
-            else if (Input.GetButtonDown("R")) {
+            else if (loosing.Count > 0) {
                 StartPhase(GamePhase.GameOver);
             }
 
         } else if (phase == GamePhase.Battle) {
+            timerThree = 15f;
+            timerThree -= Time.deltaTime;
             if (Input.GetButtonDown("Space")) {
                 //run battlephasespritechanger
                 spriteChanger.SetActive(true);
 
-            } else if (Input.GetButtonDown("R")) {
+            } else if (timerThree < 0) {
                 StartPhase(GamePhase.Rebuild);
             }
 
         } else if (phase == GamePhase.Rebuild) {
+            timerFour = 20f;
             timerFour -= Time.deltaTime;
-            if (Input.GetButtonDown("Space")) {
+            if (timerFour < 0) {
 
                 StartPhase(GamePhase.Buy);
             }

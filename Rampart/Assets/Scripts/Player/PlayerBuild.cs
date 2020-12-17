@@ -13,7 +13,6 @@ public class PlayerBuild : MonoBehaviour
     public LayerMask castle;
     public LayerMask inside;
     public LayerMask turret;
-    bool clear = false;
     GameObject tetrisPiece;
     GameObject currentObject;
     List<Vector3> checkSurroundingSpots = new List<Vector3>();
@@ -21,6 +20,7 @@ public class PlayerBuild : MonoBehaviour
     Vector3 eulerVector;
     MapData map;
     List<Vector3> obstructedVectors;
+    bool clear = false;
 
     void OnEnable() {
         pm = GetComponent<PlayerMain>();
@@ -47,21 +47,20 @@ public class PlayerBuild : MonoBehaviour
                 CheckGridPoint(targetPosition += nextV);
 
             }
-            if (obstructedVectors.Count <= 0) {
-
+            if (clear == true) {
+                currentObject.transform.position = targetPosition;
                 //spawn 1x1 walls on every gridpoint the tetrispiece occupies
                 //spawn an indicator aswell
-                Instantiate(tetrisPiece, targetPosition, Quaternion.Euler(-90, 0, 90));
+                //Instantiate(tetrisPiece, targetPosition, Quaternion.Euler(-90, 0, 90));
                 // destroy tetrispiece and clear tetris vectorlist
-                Destroy(currentObject);
+                NewTetrisPiece();
                 checkSurroundingSpots.Clear();
                 obstructedVectors.Clear();
                 //get new tetris piece and  vectors
-                NewTetrisPiece();
-                clear = false;
             } else {
                 print("Can't place wall here");
             }
+
         }
     }
 
@@ -130,7 +129,9 @@ public class PlayerBuild : MonoBehaviour
         var c = Physics.OverlapBox(target, (Vector3.one * 0.1f), Quaternion.identity, castle);
 
         if ((w.Length > 0) || (t.Length > 0) || (c.Length > 0) || (b != pm.id)) {
-            obstructedVectors.Add(target);
+            clear = false;
+        } else {
+            clear = true;
         }
     }
 }
